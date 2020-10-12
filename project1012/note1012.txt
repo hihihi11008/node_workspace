@@ -1,0 +1,32 @@
+[Node.js] : 웹사이트 제작 기술(서버 측)
+
+Node.js란?
+-자바스크립트이다. 
+-단, HTML을 제어하기 위함이 아니라, 서버측의 기술을 구현하기 위한 자바스크립이다.
+즉, 웹서버 구축이나 채팅서버 구축에 사용됨
+
+ --시퀀스 권한 부여하기
+SQL> grant create sequence to user0907;
+
+
+create sequence seq_member2
+increment by 1 
+start with 1 
+
+
+--개발하다가, tablespace 용량 부족할 경우? 
+
+conn system/1234 로 접속하여 
+
+alter database SPACE0907
+datafile 'C:\oraclexe\app\oracle\oradata\XE\SPACE0907.dbf'
+resize 20M;
+
+insert into member2(member2_id, firstname, lastname, local,msg)
+values(seq_member2.nextval,'zino','min','house','hi')
+/
+
+
+create tablespace space0907
+datafile 'C:\oraclexe\app\oracle\oradata\XE\space0907.dbf'
+size 20m;

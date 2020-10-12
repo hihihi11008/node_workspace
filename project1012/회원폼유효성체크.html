@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  width: 800px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  position: relative;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// $(document).ready(function(){
+//     $("#fname")
+// });
+$(function(){
+    //입력양식을 화면밖에 나와있게 
+    $(".container").css({
+        "left":"-1500px"
+    }).animate({
+        left: '0px'
+    });
+    //버튼을 클릭하면 
+    $("#bt").click(function(){
+        // alert("눌럿?");
+        //유효성체크하자 
+        // checkValid1();
+        checkValid2();
+    });
+});
+//순수 js 코드로 작성할 경우
+function checkValid1(){
+    var fname=document.getElementById("fname");
+    var lname=document.getElementById("lname");
+    var form1=document.getElementById("form1");
+    var country=document.getElementById("country");
+    var subject=document.getElementById("subject");
+    // fname.value="제이쿼리 재밌다 "; //set
+    if(fname.value==""){
+        alert("이름을 입력하세요 ");
+    }else if(lname.value==""){
+        alert("성을 입력하세요 ");
+    }else if(country.value==""){
+        alert("country를 입력하세요 ");
+    }else if(subject.value==""){
+        alert("subject를 입력하세요 ");
+    }else{
+        //우리가 구축한 node.js 서버로 데이터들을 전송하자 
+        form1.action="http://localhost:7979/구분경로"; // 전송할 서버주소 
+        form1.submit();
+    }
+}
+//jquery로 작성할 경우 
+function checkValid2(){
+    if($("#fname").val()==""){
+        alert("이름을 입력하세요 ");
+        $("#fname").focus();
+        //return;
+    }else if($("#lname").val()==""){
+        alert("성을 입력하세요 ");
+        $("#lname").focus();
+        //return;
+    }else if($("#country").val()==""){
+        alert("country을 입력하세요 ");
+        $("#country").focus();
+        //return;
+    }else if($("#subject").val()==""){
+        alert("subject을 입력하세요 ");
+        $("#subject").focus();
+        //return;
+    }else{
+        $("#form1").attr("action","http://localhost:7979/regist");
+        $("#form1").submit();
+    }
+}
+</script>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form  id="form1" action="/action_page.php">
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <input type="text" id="lname" name="lastname" id="lname" placeholder="Your last name..">
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    <input type="button" value="Submit" id="bt">
+  </form>
+</div>
+</body>
+</html>
