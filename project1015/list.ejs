@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+회원목록나올곳 
+총 회원수는 <%=memberArray.length%>명입니다.
+<table width="100%" border="1px">
+    <tr>
+        <!-- uid,password,uname,phone,receive,addr,memo,email -->
+        <td>member2_id</td>
+        <td>uid</td>
+        <td>uname</td>
+        <td>phone</td>
+        <td>addr</td>
+        <td>memo</td>
+        <td>email</td>
+    </tr>
+    <%for(var i=0;i<memberArray.length;i++){%>
+    <%var member=memberArray[i];%>
+    <tr align="center" onmouseover="this.style.background='lightpink'" onmouseout="this.style.background=''">
+        <td>
+            <a href="/member/detail?member2_id=<%=member.member2_id%>"><%=member.member2_id%></a>
+        </td>
+        <td><%=member.uid%></td>
+        <td><%=member.uname%></td>
+        <td><%=member.phone%></td>
+        <td><%=member.addr%></td>
+        <td><%=member.memo%></td>
+        <td><%=member.email%></td>
+    </tr>
+    <%}%>
+    <tr>
+        <td colspan="7">
+            <button onclick="location.href='/member/registForm';">회원등록</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
